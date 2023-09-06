@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Vendedor>
+
+@{
+    ViewData["Title"] = "Vendedores";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+              @Html.DisplayNameFor(model=>model.Nome)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model=>model.Data)
+            </td> 
+            <td>
+                @Html.DisplayNameFor(model=>model.Salario)
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Salario)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

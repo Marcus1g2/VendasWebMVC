@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 using VendasWebMvc.Data;
+using VendasWebMvc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<VendasWebMvcContext>(options =>
                       ServerVersion.AutoDetect(mySqlConnection)));
 
 builder.Services.AddScoped<ServicoDeSedding>();
+builder.Services.AddScoped<VendedorServicos>();
+
 
 
 
@@ -30,6 +34,8 @@ using (var scope = app.Services.CreateScope())
     var seedingService = serviceProvider.GetRequiredService<ServicoDeSedding>();
     seedingService.teste();
 }
+
+
 
 // O restante do seu código de configuração
 

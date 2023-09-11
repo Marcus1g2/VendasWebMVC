@@ -8,6 +8,7 @@
         public double Salario { get; set; }
         public ICollection<RegistroDeVenda> registroDeVendas { get; set; } = new List<RegistroDeVenda>();
         public Departamento Departamento { get; set; }
+        public int DepartamentoId { get; set; }
         public Vendedor() {
             Nome = "";
         }

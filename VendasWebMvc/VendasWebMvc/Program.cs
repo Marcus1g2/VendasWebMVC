@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using VendasWebMvc.Data;
@@ -13,12 +14,10 @@ builder.Services.AddDbContext<VendasWebMvcContext>(options =>
     options.UseMySql(mySqlConnection,
                       ServerVersion.AutoDetect(mySqlConnection)));
 
+
+
 builder.Services.AddScoped<ServicoDeSedding>();
 builder.Services.AddScoped<VendedorServicos>();
-
-
-
-
 
 
 
@@ -32,7 +31,7 @@ using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;
     var seedingService = serviceProvider.GetRequiredService<ServicoDeSedding>();
-    seedingService.teste();
+    seedingService.Create();
 }
 
 

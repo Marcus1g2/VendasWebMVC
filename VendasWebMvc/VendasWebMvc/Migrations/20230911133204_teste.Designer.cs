@@ -11,7 +11,7 @@ using VendasWebMvc.Data;
 namespace VendasWebMvc.Migrations
 {
     [DbContext(typeof(VendasWebMvcContext))]
-    [Migration("20230904212045_teste")]
+    [Migration("20230911133204_teste")]
     partial class teste
     {
         /// <inheritdoc />

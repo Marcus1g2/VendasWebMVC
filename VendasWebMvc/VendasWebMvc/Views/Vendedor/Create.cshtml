@@ -1,4 +1,4 @@
-﻿@model Vendedor
+﻿@model DepartamentoViewModel
 @{
     ViewData["Title"] = "Create"; 
 }
@@ -8,21 +8,25 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div class="col-md-6">
-                <label asp-for="Nome" class="control-label"> </label>
-                <input asp-for="Nome" class="input-control" placeholder="Escreva aqui"/> 
+                <label asp-for="Vendedor.Nome" class="control-label"> </label>
+                <input asp-for="Vendedor.Nome" class="input-control" placeholder="Escreva aqui" />
             </div>
             <div class="col-md-6">
-                <label asp-for="Data" class="control-label"> </label>
-                <input asp-for="Data" class="input-control" placeholder="Escreva aqui" />
+                <label asp-for="Vendedor.Data" class="control-label"> </label>
+                <input asp-for="Vendedor.Data" class="input-control" placeholder="Escreva aqui" />
             </div>
             <div class="col-md-6">
-                <label asp-for="Salario" class="control-label"> </label>
-                <input asp-for="Salario" class="input-control" placeholder="Escreva aqui" />
+                <label asp-for="Vendedor.Salario" class="control-label"> </label>
+                <input asp-for="Vendedor.Salario" class="input-control" placeholder="Escreva aqui" />
+            </div>
+            <div class="col-md-6">
+                <select asp-for="Vendedor.DepartamentoId" class="control-label" asp-items="ViewBag.Departamentos"></select>
             </div>
             <br />
             <div class="col-md-6">
                <input type="submit" value="Create"/>
             </div>
+
         </form>
     </div>
 </div>

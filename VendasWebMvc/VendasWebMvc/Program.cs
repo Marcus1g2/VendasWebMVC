@@ -18,7 +18,7 @@ builder.Services.AddDbContext<VendasWebMvcContext>(options =>
 
 builder.Services.AddScoped<ServicoDeSedding>();
 builder.Services.AddScoped<VendedorServicos>();
-
+builder.Services.AddScoped<DepartamentosServicos>();
 
 
 // Add services to the container.

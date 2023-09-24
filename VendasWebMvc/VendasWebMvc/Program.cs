@@ -18,7 +18,9 @@ builder.Services.AddDbContext<VendasWebMvcContext>(options =>
 
 builder.Services.AddScoped<ServicoDeSedding>();
 builder.Services.AddScoped<VendedorServicos>();
+
 builder.Services.AddScoped<DepartamentosServicos>();
+
 
 
 // Add services to the container.
@@ -36,12 +38,9 @@ using (var scope = app.Services.CreateScope())
 
 
 
-// O restante do seu código de configuração
 
 
 
-
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

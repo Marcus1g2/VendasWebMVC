@@ -13,7 +13,7 @@ namespace VendasWebMvc.Controllers
 
         public VendedorController(VendedorServicos vendedorServicos, DepartamentosServicos departamentosServicos)
         {
-           _vendedorServicos = vendedorServicos;
+            _vendedorServicos = vendedorServicos;
             _departamentosServicos = departamentosServicos;
         }
 
@@ -21,11 +21,11 @@ namespace VendasWebMvc.Controllers
         {
             var todosVendedores = _vendedorServicos.MostraV();
             var todosDepartamentos = _departamentosServicos.MostraD();
-            var Departamentos=todosDepartamentos.ToDictionary(x=>x.Id, x => x.Name);
+            var Departamentos = todosDepartamentos.ToDictionary(x => x.Id, x => x.Name);
             ViewData["Departamentos"] = Departamentos;
             return View(todosVendedores);
         }
-       
+
         public IActionResult Create()
         {
             var todosDepartamentos = _departamentosServicos.MostraD();
@@ -37,11 +37,11 @@ namespace VendasWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Vendedor vendedor)
         {
-           _vendedorServicos.AddVendedor(vendedor);
+            _vendedorServicos.AddVendedor(vendedor);
 
             return RedirectToAction(nameof(Index));
-        } 
-        
+        }
+
 
 
     }

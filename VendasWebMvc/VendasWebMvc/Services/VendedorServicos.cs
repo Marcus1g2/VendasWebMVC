@@ -17,7 +17,7 @@ namespace VendasWebMvc.Services
         }
         public void AddVendedor(Vendedor v)
         {
-            
+            v.Departamento = _context.Departamento.First();
             _context.Vendedor.Add(v);
 
             _context.SaveChanges();

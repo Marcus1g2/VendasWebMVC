@@ -15,34 +15,60 @@ namespace VendasWebMvc.Controllers
         {
             _vendedorServicos = vendedorServicos;
             _departamentosServicos = departamentosServicos;
-        }
 
-        public IActionResult Index()
+        }
+            public IActionResult Index()
+            {
+                var todosVendedores = _vendedorServicos.MostraV();
+                var todosDepartamentos = _departamentosServicos.MostraD();
+                var Departamentos = todosDepartamentos.ToDictionary(x => x.Id, x => x.Name);
+                ViewData["Departamentos"] = Departamentos;
+                return View(todosVendedores);
+            }
+
+            public IActionResult Create()
+            {
+                var todosDepartamentos = _departamentosServicos.MostraD();
+                ViewBag.Departamentos = new SelectList(todosDepartamentos, "Id", "Name");
+
+                return View();
+            }
+
+
+
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+
+            public IActionResult Create(Vendedor vendedor)
+            {
+
+                _vendedorServicos.AddVendedor(vendedor);
+
+                return RedirectToAction(nameof(Index));
+            }
+
+     public IActionResult Delete(int ? Id)
         {
-            var todosVendedores = _vendedorServicos.MostraV();
-            var todosDepartamentos = _departamentosServicos.MostraD();
-            var Departamentos = todosDepartamentos.ToDictionary(x => x.Id, x => x.Name);
-            ViewData["Departamentos"] = Departamentos;
-            return View(todosVendedores);
+            if(Id==null)
+            {
+                return NotFound();
+            }
+            var obj = _vendedorServicos.EncontrarId(Id.Value);
+                if (obj == null)
+            {
+                return NotFound();
+            }
+                return View(obj);
         }
-
-        public IActionResult Create()
-        {
-            var todosDepartamentos = _departamentosServicos.MostraD();
-            ViewBag.Departamentos = new SelectList(todosDepartamentos, "Id", "Name");
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Vendedor vendedor)
+        public IActionResult Delete(int Id)
         {
-            _vendedorServicos.AddVendedor(vendedor);
-
+            _vendedorServicos.Remover(Id);
             return RedirectToAction(nameof(Index));
         }
 
-
-
+        } 
     }
-}
+    
+

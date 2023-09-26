@@ -4,9 +4,9 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p><a asp-action="Create" class="">Create</a></p>
+<p><a asp-action="Create" class="btn btn-dark">Create</a></p>
 
-<table class="table">
+<table class="table table-striped  table-dark">
     <thead>
         <tr>
             <td>
@@ -17,6 +17,12 @@
             </td>  
             <td>
            @Html.DisplayNameFor(model=>model.Salario)
+            </td>  
+            <td>
+           @Html.DisplayNameFor(model=>model.Departamento)
+            </td>
+            <td>
+
             </td>
         </tr>
     </thead>
@@ -37,10 +43,11 @@
                     @((ViewData["Departamentos"] as Dictionary<int, string>)[item.DepartamentoId])
             </td>
 
+
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id"> Detalhes </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id"> Excluir </a>
+                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a class="btn btn-primary btn-sm"  asp-action="Details" asp-route-id="@item.Id"> Detalhes </a> |
+                    <a class="btn btn-primary btn-sm" asp-action="Delete" asp-route-id="@item.Id"> Excluir </a>
                 </td>
         </tr>
         }

@@ -1,6 +1,7 @@
+
 @model DepartamentoViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create"; 
 }
 <h2> @ViewData["Title"]</h2>
 <hr />
@@ -8,25 +9,26 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div class="col-md-6">
-                <label asp-for="Vendedor.Nome" class="control-label"> </label>
-                <input asp-for="Vendedor.Nome" class="input-control" placeholder="Escreva aqui" />
+
+                <label asp-for="Vendedor.Nome"> </label>
+                <input asp-for="Vendedor.Nome" class="bg-dark text-white" placeholder="Nome" />
             </div>
             <div class="col-md-6">
-                <label asp-for="Vendedor.Data" class="control-label"> </label>
-                <input asp-for="Vendedor.Data" class="input-control" placeholder="Escreva aqui" />
+                <label asp-for="Vendedor.Data" > </label>
+                <input asp-for="Vendedor.Data" class="bg-dark text-white"  />
             </div>
             <div class="col-md-6">
-                <label asp-for="Vendedor.Salario" class="control-label"> </label>
-                <input asp-for="Vendedor.Salario" class="input-control" placeholder="Escreva aqui" />
+                <label asp-for="Vendedor.Salario" > </label>
+                <input asp-for="Vendedor.Salario" class="bg-dark text-white" placeholder="Salario" />
             </div>
             <div class="col-md-6">
-                <select asp-for="Vendedor.DepartamentoId" class="control-label" asp-items="ViewBag.Departamentos"></select>
+                <label asp-for="Vendedor.DepartamentoId">Departamentos</label>
+                <select asp-for="Vendedor.DepartamentoId" class="bg-dark text-white" asp-items="ViewBag.Departamentos"></select>
             </div>
             <br />
             <div class="col-md-6">
-                <input type="submit" value="Create" />
+                <input class="btn btn-dark"type="submit" value="Create" />
             </div>
-
         </form>
     </div>
 </div>

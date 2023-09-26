@@ -17,11 +17,25 @@ namespace VendasWebMvc.Services
         }
         public void AddVendedor(Vendedor v)
         {
-            v.Departamento = _context.Departamento.First();
+       
             _context.Vendedor.Add(v);
 
             _context.SaveChanges();
         }
+        //metodo encontrarId
+    public Vendedor EncontrarId(int Id)
+        {
+            return _context.Vendedor.FirstOrDefault(obj=>obj.Id==Id); 
+        }
 
+        //metodo Remover
+      public void Remover(int Id)
+        {
+           var encontrar = _context.Vendedor.Find(Id);
+            _context.Vendedor.Remove(encontrar);
+            _context.SaveChanges();
+        }
+     
+        
     }
 }

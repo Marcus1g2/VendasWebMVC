@@ -19,16 +19,15 @@ builder.Services.AddDbContext<VendasWebMvcContext>(options =>
 builder.Services.AddScoped<ServicoDeSedding>();
 builder.Services.AddScoped<VendedorServicos>();
 
+
 builder.Services.AddScoped<DepartamentosServicos>();
 
 
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Obter uma instância do ServicoDeSedding e executar o método teste
+
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;

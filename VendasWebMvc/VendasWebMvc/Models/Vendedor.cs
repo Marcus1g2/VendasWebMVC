@@ -9,24 +9,25 @@
         public ICollection<RegistroDeVenda> registroDeVendas { get; set; } = new List<RegistroDeVenda>();
         public Departamento Departamento { get; set; }
         public int DepartamentoId { get; set; }
-        public Vendedor() {
+        public Vendedor()
+        {
             Nome = "";
         }
 
-        public Vendedor(int id, string nome, DateTime data, double salario, Departamento departamento )
+        public Vendedor(int id, string nome, DateTime data, double salario, Departamento departamento)
         {
             Id = id;
             Nome = nome;
             Data = data;
             Salario = salario;
             Departamento = departamento;
-           
+
         }
-        public void AddRegistro( RegistroDeVenda registroDeVenda)
+        public void AddRegistro(RegistroDeVenda registroDeVenda)
         {
             registroDeVendas.Add(registroDeVenda);
         }
-        public void RemoveRegistro( RegistroDeVenda registroDeVenda)
+        public void RemoveRegistro(RegistroDeVenda registroDeVenda)
         {
             registroDeVendas.Remove(registroDeVenda);
         }

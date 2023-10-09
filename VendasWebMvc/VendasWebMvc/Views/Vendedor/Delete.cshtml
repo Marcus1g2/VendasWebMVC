@@ -2,30 +2,37 @@
 
 <h2>Tem certeza de que deseja excluir isto? </h2>
 <div class="container">
-    <hr />
-    <dl>
-    @Html.DisplayNameFor(model=>model.Nome)
+    <dl class="dl-horizontal">
+        <h3>Vendedor</h3>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model=>model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model=>Model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.Data)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model=>Model.Data)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.Salario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(Model=>Model.Salario)
+        </dd> 
+      
+        
     </dl>
-    <dt>
-    @Html.DisplayFor(Model=>Model.Nome)
-    </dt>
-    <dl>
-    @Html.DisplayNameFor(model=>model.Data)
-    </dl>
-    <dt>
-    @Html.DisplayFor(Model=>Model.Data)
-    </dt>
-    <dl>
-    @Html.DisplayNameFor(model=>model.Salario)
-    </dl>
-    <dt>
-    @Html.DisplayFor(Model=>Model.Salario)
-    </dt> 
-    
-   
+
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id"/>
-        <input type="submit" value="Delete" class="btn btn-danger"/>
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
     </form>
-    <a asp-action="Index">Voltar</a>
+
+
+
 </div>

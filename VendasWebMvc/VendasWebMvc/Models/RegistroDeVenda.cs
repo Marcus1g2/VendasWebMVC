@@ -6,7 +6,7 @@ namespace VendasWebMvc.Models
     {
         public int Id { get; set; }
         public DateTime Data { get; set; }
-        public double Montante { get; set;}
+        public double Montante { get; set; }
         public StatusVenda Status { get; set; }
         public Vendedor Vendedor { get; set; }
         public RegistroDeVenda() { }

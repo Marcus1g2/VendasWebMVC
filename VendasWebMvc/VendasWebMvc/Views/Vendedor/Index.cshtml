@@ -10,48 +10,48 @@
     <thead>
         <tr>
             <td>
-            @Html.DisplayNameFor(model=>model.Nome)
+                @Html.DisplayNameFor(model=>model.Nome)
             </td>
             <td>
-           @Html.DisplayNameFor(model=>model.Data)
-            </td>  
-            <td>
-           @Html.DisplayNameFor(model=>model.Salario)
-            </td>  
-            <td>
-           @Html.DisplayNameFor(model=>model.Departamento)
+                @Html.DisplayNameFor(model=>model.Data)
             </td>
             <td>
-
+                @Html.DisplayNameFor(model=>model.Salario)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model=>model.Departamento)
+            </td>
+            <td>
             </td>
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model){
-        <tr>
-            <td>
-            @Html.DisplayFor(M=>item.Nome) 
-            </td>
-            <td>
-                @Html.DisplayFor(M=>item.Data)
-            </td>
-            <td>
-                @Html.DisplayFor(M=>item.Salario)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(M=>item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(M=>item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(M=>item.Salario)
+                </td>
 
-            <td>
+                <td>
                     @((ViewData["Departamentos"] as Dictionary<int, string>)[item.DepartamentoId])
-            </td>
+                </td>
 
 
                 <td>
                     <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a class="btn btn-primary btn-sm"  asp-action="Details" asp-route-id="@item.Id"> Detalhes </a> |
+                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id"> Detalhes </a> |
                     <a class="btn btn-primary btn-sm" asp-action="Delete" asp-route-id="@item.Id"> Excluir </a>
                 </td>
-        </tr>
+            </tr>
         }
- 
+
     </tbody>
 </table>
 

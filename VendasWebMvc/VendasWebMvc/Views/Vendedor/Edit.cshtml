@@ -1,4 +1,4 @@
-@model DepartamentoViewModel
+﻿@model DepartamentoViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -6,7 +6,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
+            <input  type="hidden" asp-for="Vendedor.Id"/>
             <div class="col-md-6">
 
                 <label asp-for="Vendedor.Nome"> </label>
@@ -21,12 +22,13 @@
                 <input asp-for="Vendedor.Salario" class="bg-dark text-white" placeholder="Salario" />
             </div>
             <div class="col-md-6">
-                <label asp-for="Vendedor.DepartamentoId">Departamentos</label>
-                <select asp-for="Vendedor.DepartamentoId" class="bg-dark text-white" asp-items="ViewBag.Departamentos"></select>
+                <label asp-for="Vendedor.DepartamentoId" class="control-label"></label>
+                <select asp-for="Vendedor.DepartamentoId" asp-items="@(new SelectList(Model.Departamentos,"Id","Name"))" class="form-control"></select>
             </div>
             <br />
             <div class="col-md-6">
-                <input class="btn btn-dark" type="submit" value="Create" />
+                <input class="btn btn-dark" type="submit" value="Save" />
+                <a asp-action="Index" class="btn btn-primary">Voltar</a>
             </div>
         </form>
     </div>

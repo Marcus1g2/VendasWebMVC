@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
+using System.Diagnostics;
 using VendasWebMvc.Data;
 using VendasWebMvc.Models;
 using VendasWebMvc.Services;
@@ -44,25 +47,25 @@ namespace VendasWebMvc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-       public IActionResult Create(Vendedor vendedor)
+        public IActionResult Create(Vendedor vendedor)
         {
 
             _vendedorServicos.AddVendedor(vendedor);
 
             return RedirectToAction(nameof(Index));
         }
-      
+
 
         public IActionResult Delete(int? Id)
         {
             if (Id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "ID não fornecido" });
             }
             var obj = _vendedorServicos.EncontrarId(Id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "ID não encontrado" });
             }
             return View(obj);
         }
@@ -77,12 +80,12 @@ namespace VendasWebMvc.Controllers
         {
             if (Id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "ID não fornecido" });
             }
             var obj = _vendedorServicos.EncontrarId(Id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "ID não encontrado" });
             }
 
 
@@ -93,12 +96,12 @@ namespace VendasWebMvc.Controllers
         {
             if (Id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "ID não fornecido" });
             }
             var obj = _vendedorServicos.EncontrarId(Id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "ID não encontrado" });
             }
 
             List<Departamento> departamentos = _departamentosServicos.MostraD();
@@ -119,14 +122,20 @@ namespace VendasWebMvc.Controllers
                 _vendedorServicos.Update(vendedor);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException)
+            catch (ApplicationException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = e.Message });
             }
-            catch (DbConcurrencyException)
+          
+        }
+        public IActionResult Error(string message)
+        {
+            var ViewModel = new ErrorViewModel
             {
-                return BadRequest();
-            }
+                Message = message,
+                RequestId = Activity.Current?.Id??HttpContext.TraceIdentifier
+            };
+            return View(ViewModel);
         }
     }
 

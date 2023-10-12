@@ -115,7 +115,7 @@ namespace VendasWebMvc.Controllers
         {
             if (id != vendedor.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { Message = "Id incompatível" });
             }
             try
             {

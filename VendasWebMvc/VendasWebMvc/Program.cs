@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
+using System.Globalization; 
 using VendasWebMvc.Data;
 using VendasWebMvc.Services;
 
@@ -35,6 +38,17 @@ using (var scope = app.Services.CreateScope())
     seedingService.Create();
 }
 
+var supportedCultures = new[]
+{
+    new CultureInfo("en-US"),
+    new CultureInfo("pt-BR")
+};
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture=new RequestCulture("en-US"),
+    SupportedCultures=supportedCultures,
+    SupportedUICultures=supportedCultures
+});
 
 
 

@@ -1,10 +1,16 @@
-﻿namespace VendasWebMvc.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace VendasWebMvc.Models
 {
     public class Vendedor
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime Data { get; set; }
+        [Display(Name = "Salário")]
+        [DisplayFormat(DataFormatString ="{0:F2}")]
         public double Salario { get; set; }
         public ICollection<RegistroDeVenda> registroDeVendas { get; set; } = new List<RegistroDeVenda>();
         public Departamento Departamento { get; set; }

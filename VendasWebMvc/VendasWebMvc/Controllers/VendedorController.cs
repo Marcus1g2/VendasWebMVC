@@ -49,7 +49,12 @@ namespace VendasWebMvc.Controllers
 
         public IActionResult Create(Vendedor vendedor)
         {
-
+            if (!ModelState.IsValid)
+            {
+                var departamento = _departamentosServicos.MostraD();
+                var viewModel = new DepartamentoViewModel { Vendedor = vendedor, Departamentos = departamento };
+                return View(viewModel);
+            }
             _vendedorServicos.AddVendedor(vendedor);
 
             return RedirectToAction(nameof(Index));
@@ -113,6 +118,12 @@ namespace VendasWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Vendedor vendedor)
         {
+            if (!ModelState.IsValid)
+            {
+                var departamento = _departamentosServicos.MostraD();
+                var viewModel = new DepartamentoViewModel { Vendedor = vendedor, Departamentos = departamento };
+                return View(viewModel);
+            }
             if (id != vendedor.Id)
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id incompatível" });

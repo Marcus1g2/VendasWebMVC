@@ -2,27 +2,32 @@
 @{
     ViewData["Title"] = "Create";
 }
-<h2> @ViewData["Title"]</h2>
+<h2>@ViewData["Title"]</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div class="col-md-6">
+           <div asp-validation-summary="All" class="text-danger"></div>
+               <div class="col-md-6">
 
                 <label asp-for="Vendedor.Nome"> </label>
                 <input asp-for="Vendedor.Nome" class="bg-dark text-white" placeholder="Nome" />
+                 <span asp-validation-for="Vendedor.Nome" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="Vendedor.Data"> </label>
                 <input asp-for="Vendedor.Data" class="bg-dark text-white" />
+                 <span asp-validation-for="Vendedor.Data" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="Vendedor.Salario"> </label>
-                <input asp-for="Vendedor.Salario" class="bg-dark text-white" placeholder="Salario" />
+               <input asp-for="Vendedor.Salario" class="bg-dark text-white" placeholder="Salario" />
+                    <span asp-validation-for="Vendedor.Salario" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="Vendedor.DepartamentoId">Departamentos</label>
                 <select asp-for="Vendedor.DepartamentoId" class="bg-dark text-white" asp-items="ViewBag.Departamentos"></select>
+             
             </div>
             <br />
             <div class="col-md-6">
@@ -31,3 +36,8 @@
         </form>
     </div>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -19,6 +19,8 @@ namespace VendasWebMvc.Models
         public ICollection<RegistroDeVenda> registroDeVendas { get; set; } = new List<RegistroDeVenda>();
 
         public Departamento Departamento { get; set; }
+
+        [Required(ErrorMessage ="{0} Obrigatorio")]
         public int DepartamentoId { get; set; }
         public Vendedor()
         {

@@ -7,19 +7,23 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <input  type="hidden" asp-for="Vendedor.Id"/>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Vendedor.Id" />
             <div class="col-md-6">
 
                 <label asp-for="Vendedor.Nome"> </label>
                 <input asp-for="Vendedor.Nome" class="bg-dark text-white" placeholder="Nome" />
+                <span asp-validation-for="Vendedor.Nome" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="Vendedor.Data"> </label>
                 <input asp-for="Vendedor.Data" class="bg-dark text-white" />
+                <span asp-validation-for="Vendedor.Data" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="Vendedor.Salario"> </label>
                 <input asp-for="Vendedor.Salario" class="bg-dark text-white" placeholder="Salario" />
+                <span asp-validation-for="Vendedor.Salario" class="text-danger"></span>
             </div>
             <div class="col-md-6">
                 <label asp-for="Vendedor.DepartamentoId" class="control-label"></label>
@@ -33,3 +37,8 @@
         </form>
     </div>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -27,6 +27,7 @@
             <div class="col-md-6">
                 <label asp-for="Vendedor.DepartamentoId">Departamentos</label>
                 <select asp-for="Vendedor.DepartamentoId" class="bg-dark text-white" asp-items="ViewBag.Departamentos"></select>
+                <span asp-validation-for="Vendedor.DepartamentoId" class="text-danger"></span>
              
             </div>
             <br />

@@ -50,19 +50,11 @@ namespace VendasWebMvc.Controllers
 
         public async Task<IActionResult> Create(Vendedor vendedor)
         {
-            if (ModelState.IsValid)
-            {
-
                 await _vendedorServicos.AddVendedorAsync(vendedor);
 
                 return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Houve um erro no envio do formulário.");
-
-                return View(vendedor);
-            }
+            
+         
         }
 
 
@@ -123,12 +115,7 @@ namespace VendasWebMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Vendedor vendedor)
         {
-       /*     if (!ModelState.IsValid)
-            {
-                var departamento = await _departamentosServicos.FindAllAsync();
-                var viewModel = new DepartamentoViewModel { Vendedor = vendedor, Departamentos = departamento };
-                return View(viewModel);
-            }*/
+       
             if (id != vendedor.Id)
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id incompatível" });

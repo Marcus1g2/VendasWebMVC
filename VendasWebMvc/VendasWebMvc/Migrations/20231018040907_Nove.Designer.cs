@@ -11,8 +11,8 @@ using VendasWebMvc.Data;
 namespace VendasWebMvc.Migrations
 {
     [DbContext(typeof(VendasWebMvcContext))]
-    [Migration("20230911133204_teste")]
-    partial class teste
+    [Migration("20231018040907_Nove")]
+    partial class Nove
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,8 @@ namespace VendasWebMvc.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)");
 
                     b.Property<double>("Salario")
                         .HasColumnType("double");

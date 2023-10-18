@@ -2,6 +2,7 @@
 using VendasWebMvc.Models;
 using Microsoft.EntityFrameworkCore;
 using VendasWebMvc.Services.Exceções;
+using Microsoft.AspNetCore.Mvc;
 
 namespace VendasWebMvc.Services
 {
@@ -9,22 +10,25 @@ namespace VendasWebMvc.Services
     {
         private readonly VendasWebMvcContext _context;
 
+
         public VendedorServicos(VendasWebMvcContext context)
         {
             _context = context;
+            
         }
 
         public async Task<List<Vendedor>> FindAllAsync()
         {
             return await _context.Vendedor.ToListAsync();
         }
-        public async Task AddVendedorAsync(Vendedor v)
+        public async Task AddVendedorAsync(Vendedor vendedor)
         {
 
-            _context.Vendedor.Add(v);
-
-          await  _context.SaveChangesAsync();
+             _context.Add(vendedor);
+             await _context.SaveChangesAsync();
+         
         }
+
         //metodo encontrarId
         public async Task<Vendedor> EncontrarIdAsync(int Id)
         {

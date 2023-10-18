@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
-using System.Globalization; 
+using System.Globalization;
 using VendasWebMvc.Data;
 using VendasWebMvc.Services;
 
@@ -21,9 +21,8 @@ builder.Services.AddDbContext<VendasWebMvcContext>(options =>
 
 builder.Services.AddScoped<ServicoDeSedding>();
 builder.Services.AddScoped<VendedorServicos>();
-
-
 builder.Services.AddScoped<DepartamentosServicos>();
+builder.Services.AddScoped<RegistroDeVendaServicos>();
 
 
 builder.Services.AddControllersWithViews();
@@ -45,9 +44,9 @@ var supportedCultures = new[]
 };
 app.UseRequestLocalization(new RequestLocalizationOptions
 {
-    DefaultRequestCulture=new RequestCulture("en-US"),
-    SupportedCultures=supportedCultures,
-    SupportedUICultures=supportedCultures
+    DefaultRequestCulture = new RequestCulture("en-US"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
 });
 
 

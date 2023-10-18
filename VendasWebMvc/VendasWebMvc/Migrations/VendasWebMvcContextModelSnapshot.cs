@@ -73,7 +73,8 @@ namespace VendasWebMvc.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)");
 
                     b.Property<double>("Salario")
                         .HasColumnType("double");

@@ -13,17 +13,17 @@ namespace VendasWebMvc.Services
         {
             _context = context;
         }
-        public async Task<List<RegistroDeVenda>> EncontrarPorDataAsync(DateTime? MinDate, DateTime? MaxDate)
+        public async Task<List<RegistroDeVenda>> BuscaSimplesAsync(DateTime? minDate, DateTime? maxDate)
         {
             var selecione = from obj in _context.RegistroDeVenda select obj;
 
-            if (MinDate.HasValue)
+            if (minDate.HasValue)
             {
-                selecione = selecione.Where(x => x.Data >= MinDate.Value);
+                selecione = selecione.Where(x => x.Data >= minDate.Value);
             }
-            if (MaxDate.HasValue)
+            if (maxDate.HasValue)
             {
-                selecione = selecione.Where(x => x.Data <= MaxDate.Value);
+                selecione = selecione.Where(x => x.Data <= maxDate.Value);
             }
 
             return await selecione.
@@ -32,7 +32,35 @@ namespace VendasWebMvc.Services
                 OrderByDescending(x => x.Data).
                 ToListAsync();
         }
+        public async Task<List<IGrouping<Departamento, RegistroDeVenda>>> BuscaAgrupadaAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var select = from obj in _context.RegistroDeVenda select obj;
+            if (minDate.HasValue)
+            {
+                select = select.Where(x => x.Data >= minDate.Value);
+            }
+            if (maxDate.HasValue)
+            {
+                select = select.Where(x => x.Data <= maxDate.Value);
+            }
+            return await select.Include(x => x.Vendedor).
+                Include(x => x.Vendedor.Departamento).
+                OrderByDescending(x => x.Data).
+                GroupBy(x => x.Vendedor.Departamento).
+                ToListAsync();
+        }
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 

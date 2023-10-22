@@ -16,27 +16,42 @@ namespace VendasWebMvc.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> BuscaSimples(DateTime? MinDate, DateTime? MaxDate)
+        public async Task<IActionResult> BuscaSimples(DateTime? minDate, DateTime? maxDate)
         {
-            if(!MinDate.HasValue)
+            if (!minDate.HasValue)
             {
-                MinDate = new DateTime(DateTime.Now.Year,1,1);
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
             }
-            if(!MaxDate.HasValue)
+            if (!maxDate.HasValue)
             {
-                MaxDate = new DateTime(DateTime.Now.Year);
+                maxDate = DateTime.Now;
             }
-            ViewData["minDate"] =MinDate.Value.ToString("dd/MM/yyyy");
-            ViewData["maxDate"]=MaxDate.Value.ToString("dd/MM/yyyy");
-            
+            ViewData["minDate"] = minDate.Value.ToString("dd/MM/yyyy");
+            ViewData["maxDate"] = maxDate.Value.ToString("dd/MM/yyyy");
 
-            var mostrar = await _Rvd.EncontrarPorDataAsync(MinDate, MaxDate);
+
+            var mostrar = await _Rvd.BuscaSimplesAsync(minDate, maxDate);
 
             return View(mostrar);
         }
-        public IActionResult BuscaAgrupada()
+
+        public async Task<IActionResult> BuscaAgrupada(DateTime? minDate, DateTime? maxDate)
         {
-            return View();
+            if (!minDate.HasValue)
+            {
+                minDate=new DateTime(DateTime.Now.Year,1, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+            ViewData["minDate"] = minDate.Value.ToString("dd/MM/yyyy");
+            ViewData["maxDate"] = maxDate.Value.ToString("dd/MM/yyyy");
+
+            var datas=await _Rvd.BuscaAgrupadaAsync(minDate, maxDate);
+            return View(datas);
         }
+
     }
 }
+
